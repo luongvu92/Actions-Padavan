@@ -1,0 +1,79 @@
+#=================================================
+# https://github.com/kingyan/Actions-Padavan
+# Description: Build Padavan With GitHub Actions
+# Lisence: MIT
+# Author: kingyan
+# Build 2020-02-20 19:10
+#=================================================
+
+name: Padavan-CI
+
+on: 
+
+#  push:
+#    branches: 
+#      - master
+#    paths:
+#      - 'diy.sh'
+#  schedule:
+#    - cron: 0 8 * * *
+  release:
+    types: [published]
+#  watch:
+#    types: [started]
+
+env:
+  DIY_SH: diy.sh
+  SSH_ACTIONS: false
+  # K2_nano K2P_nano K2P_nano-5.0
+  TNAME: K2P_nano-5.0
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        #sudo apt-get update
+        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
+        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev gcc-multilib
+
+    - name: Clone source code
+      run: |
+        git clone --depth=1 https://github.com/hanwckf/rt-n56u.git /opt/rt-n56u
+        cd /opt/rt-n56u/toolchain-mipsel
+        mkdir -p toolchain-3.4.x
+        wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.0/mipsel-linux-uclibc.tar.xz
+        tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
+        mkdir -p /opt/images/
+
+    - name: Diy script
+      run: |
+        chmod +x $DIY_SH
+        ./$DIY_SH
+
+    - name: SSH connection
+      uses: P3TERX/debugger-action@master
+      if: env.SSH_ACTIONS == 'true'
+
+    - name: Build firmware
+      run: |
+        cd /opt/rt-n56u/trunk
+        sudo ./clear_tree
+        sudo ./build_firmware_modify $TNAME
+        # sudo cp -f .config /opt/images/
+        sudo cp -f images/*.trx /opt/images/
+
+    - name : Upload firmware
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: Padavan_firmware
+        path: /opt/images
