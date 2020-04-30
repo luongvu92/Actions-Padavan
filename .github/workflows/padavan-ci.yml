@@ -10,9 +10,9 @@ name: Padavan-CI
 
 on: 
 
-#  push:
-#    branches: 
-#      - master
+  push:
+    branches: 
+      - master
 #    paths:
 #      - 'diy.sh'
 #  schedule:
