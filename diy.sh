@@ -8,7 +8,7 @@
 cd /opt/rt-n56u/trunk
 
 # 优化编译脚本
-sed -i '5,11d' build_firmware_modify
+sed -i '7,13d' build_firmware_modify
 
 # 复制K2编译文件
 cp -a configs/boards/PSG1218 configs/boards/K2
