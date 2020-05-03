@@ -29,6 +29,7 @@ if [ ! -f configs/templates/$TNAME.config ] ; then
     exit 1
 fi
 cp -f configs/templates/$TNAME.config .config
+
 if  echo ${TNAME} | grep -qi "nano" ; then
     #====================================================================================#
     #自定义添加其它功能请参考源码configs/templates/目录下的config文件，按照下面的格式添加即可。#
