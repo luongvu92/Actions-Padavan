@@ -10,17 +10,17 @@ name: Padavan-CI
 
 on: 
 
-  push:
-    branches: 
-      - master
+#  push:
+#    branches: 
+#      - master
 #    paths:
 #      - 'diy.sh'
 #  schedule:
 #    - cron: 0 8 * * *
-  release:
-    types: [published]
-#  watch:
-#    types: [started]
+#  release:
+#    types: [published]
+  watch:
+    types: [started]
 
 env:
   DIY_SH: diy.sh
