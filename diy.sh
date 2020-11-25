@@ -10,6 +10,15 @@ cd /opt/rt-n56u/trunk
 # 优化编译脚本(删除7-13行)
 sed -i '7,13d' build_firmware_modify
 
+# 监测地址优化
+sed -i '/di_addr0/{s/114.114.114.114/218.2.2.2/g}' user/shared/defaults.c
+sed -i '/di_addr1/{s/208.67.222.222/218.4.4.4/g}' user/shared/defaults.c
+sed -i '/di_addr2/{s/14.17.42.40/223.5.5.5/g}' user/shared/defaults.c
+sed -i '/di_addr3/{s/8.8.8.8/119.29.29.29/g}' user/shared/defaults.c
+sed -i '/di_addr4/{s/8.8.4.4/114.114.114.114/g}' user/shared/defaults.c
+sed -i '/di_addr5/{s/208.67.220.220/114.114.115.115/g}' user/shared/defaults.c
+sed -i '/di_port2/{s/80/53/g}' user/shared/defaults.c
+
 # 复制K2编译文件
 #cp -a configs/boards/PSG1218 configs/boards/K2
 #sed -i 's/PSG1218/K2/g' configs/boards/K2/board.h
