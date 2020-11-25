@@ -19,7 +19,7 @@ sed -i '/di_addr4/{s/8.8.4.4/114.114.114.114/g}' user/shared/defaults.c
 sed -i '/di_addr5/{s/208.67.220.220/114.114.115.115/g}' user/shared/defaults.c
 sed -i '/di_port2/{s/80/53/g}' user/shared/defaults.c
 
-# 复制K2编译文件
+# 修改K2编译文件
 #cp -a configs/boards/PSG1218 configs/boards/K2
 #sed -i 's/PSG1218/K2/g' configs/boards/K2/board.h
 #sed -i 's/PSG1218/K2/g' configs/boards/K2/board.mk
