@@ -3,7 +3,7 @@
 # Description: Build Padavan With GitHub Actions
 # Lisence: MIT
 # Author: kingyan
-# Build 2020-04-30 12:16
+# Build 2020-11-25 13:25
 #=================================================
 
 name: Padavan-CI
@@ -25,8 +25,8 @@ on:
 env:
   DIY_SH: diy.sh
   SSH_ACTIONS: false
-  # K2_nano K2P_nano K2P_nano-5.0
-  TNAME: K2_nano
+  # PSG1218_nano K2P_nano K2P_nano-5.0
+  TNAME: PSG1218_nano
 
 jobs:
   build:
@@ -42,10 +42,10 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
-        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
-        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget \
-        module-init-tools
+        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
 
     - name: Clone source code
       run: |
