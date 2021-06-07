@@ -7,8 +7,8 @@
 #=================================================
 cd /opt/rt-n56u/trunk
 
-# 优化编译脚本(删除7-13行)
-sed -i '7,13d' build_firmware_modify
+# 优化编译脚本(删除9-13行)
+sed -i '9,13d' build_firmware_modify
 
 # 监测地址优化
 sed -i '/di_addr0/{s/114.114.114.114/218.2.2.2/g}' user/shared/defaults.c
@@ -34,7 +34,7 @@ sed -i '/di_port2/{s/80/53/g}' user/shared/defaults.c
 #sed -i '/Peer\x27s MPFC isn\x27t used\./{s/DBG_LVL_ERROR/DBG_LVL_TRACE/g}' proprietary/rt_wifi/rtpci/5.0.3.0/mt7615/embedded/security/pmf.c
 
 if [ ! -f configs/templates/$TNAME.config ] ; then
-    echo "configs/templates/$TNAME.config not found "
+    echo "configs/templates/$TNAME.config not found!"
     exit 1
 fi
 cp -f configs/templates/$TNAME.config .config
