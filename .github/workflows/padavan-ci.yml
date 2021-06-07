@@ -31,8 +31,8 @@ on:
 env:
   DIY_SH: diy.sh
   SSH_ACTIONS: false
-  # PSG1218_nano K2P_nano K2P_nano-5.0
-  TNAME: PSG1218_nano
+  # PSG1218_nano K2P_nano
+  TNAME: K2P_nano
 
 jobs:
   build:
@@ -86,3 +86,9 @@ jobs:
       with:
         name: Padavan_firmware
         path: /opt/images
+
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 1
