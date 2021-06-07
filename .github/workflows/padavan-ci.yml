@@ -49,7 +49,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
-        fakeroot kmod cpio git python-docutils gettext automake autopoint \
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
         texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
 
@@ -75,7 +75,7 @@ jobs:
     - name: Build firmware
       run: |
         cd /opt/rt-n56u/trunk
-        ./clear_tree
+        #./clear_tree
         fakeroot ./build_firmware_modify $TNAME
         # sudo cp -f .config /opt/images/
         sudo cp -f images/*.trx /opt/images/
