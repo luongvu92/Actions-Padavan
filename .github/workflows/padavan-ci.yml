@@ -32,7 +32,7 @@ env:
   DIY_SH: diy.sh
   SSH_ACTIONS: false
   # PSG1218_nano K2_nano K2P_nano
-  TNAME: K2_nano
+  TNAME: PSG1218_nano
 
 jobs:
   build:
@@ -77,7 +77,7 @@ jobs:
         cd /opt/rt-n56u/trunk
         #./clear_tree
         fakeroot ./build_firmware_modify $TNAME
-        # sudo cp -f .config /opt/images/
+        sudo cp -f .config /opt/images/
         sudo cp -f images/*.trx /opt/images/
 
     - name : Upload firmware
