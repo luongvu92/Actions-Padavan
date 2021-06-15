@@ -19,16 +19,20 @@ sed -i '/di_addr4/{s/8.8.4.4/114.114.114.114/g}' user/shared/defaults.c
 sed -i '/di_addr5/{s/208.67.220.220/114.114.115.115/g}' user/shared/defaults.c
 sed -i '/di_port2/{s/80/53/g}' user/shared/defaults.c
 
-# 修改K2编译文件
+# 修改K2编译文件开始
 cp -a configs/boards/PSG1218 configs/boards/K2
 sed -i 's/PSG1218/K2/g' configs/boards/K2/board.h
 sed -i 's/PSG1218/K2/g' configs/boards/K2/board.mk
 
-# 修改K2配置文件
 cp -f configs/templates/PSG1218.config configs/templates/K2.config
 sed -i 's/PSG1218/K2/g' configs/templates/K2.config
 cp -f configs/templates/PSG1218_nano.config configs/templates/K2_nano.config
 sed -i 's/PSG1218/K2/g' configs/templates/K2_nano.config
+
+sed -i 's/BOARD_PSG1218/BOARD_K2/g' user/rc/detect_internet.c
+sed -i 's/BOARD_PSG1218/BOARD_K2/g' user/rc/detect_link.c
+sed -i 's/BOARD_PSG1218/BOARD_K2/g' user/rc/net_wan.c
+# 修改K2配置文件结束
 
 # MT7615驱动优化(关闭日志)
 #sed -i '/Peer\x27s MPFC isn\x27t used\./{s/DBG_LVL_ERROR/DBG_LVL_TRACE/g}' proprietary/rt_wifi/rtpci/5.0.3.0/mt7615/embedded/security/pmf.c
