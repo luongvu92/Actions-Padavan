@@ -75,7 +75,7 @@ jobs:
     - name: Build firmware
       run: |
         cd /opt/rt-n56u/trunk
-        #./clear_tree
+        ./clear_tree
         fakeroot ./build_firmware_modify $TNAME
         sudo cp -f .config /opt/images/
         sudo cp -f images/*.trx /opt/images/
