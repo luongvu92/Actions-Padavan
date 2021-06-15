@@ -7,8 +7,8 @@
 #=================================================
 cd /opt/rt-n56u/trunk
 
-# 优化编译脚本(删除9-13行)
-sed -i '9,13d' build_firmware_modify
+# 优化编译脚本(删除9-15行)
+sed -i '9,15d' build_firmware_modify
 
 # 监测地址优化
 sed -i '/di_addr0/{s/114.114.114.114/218.2.2.2/g}' user/shared/defaults.c
