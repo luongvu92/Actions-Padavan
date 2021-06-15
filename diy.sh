@@ -66,6 +66,5 @@ if  echo ${TNAME} | grep -qi "nano" ; then
     echo "CONFIG_FIRMWARE_INCLUDE_TTYD=n" >> .config
     echo "CONFIG_FIRMWARE_INCLUDE_SOCAT=n" >> .config
     echo "CONFIG_FIRMWARE_INCLUDE_SRELAY=n" >> .config
-    echo "#Test" >> .config
     #====================================================================================#
 fi
