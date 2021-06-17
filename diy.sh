@@ -11,6 +11,7 @@ cd /opt/rt-n56u/trunk
 sed -i '9,15d' build_firmware_modify
 
 # 监测地址优化
+sed -i '/di_poll_mode/{s/0/1/g}' user/shared/defaults.c
 sed -i '/di_addr0/{s/114.114.114.114/218.2.2.2/g}' user/shared/defaults.c
 sed -i '/di_addr1/{s/208.67.222.222/218.4.4.4/g}' user/shared/defaults.c
 sed -i '/di_addr2/{s/14.17.42.40/223.5.5.5/g}' user/shared/defaults.c
@@ -18,6 +19,15 @@ sed -i '/di_addr3/{s/8.8.8.8/119.29.29.29/g}' user/shared/defaults.c
 sed -i '/di_addr4/{s/8.8.4.4/114.114.114.114/g}' user/shared/defaults.c
 sed -i '/di_addr5/{s/208.67.220.220/114.114.115.115/g}' user/shared/defaults.c
 sed -i '/di_port2/{s/80/53/g}' user/shared/defaults.c
+
+# WAN LED
+sed -i '/front_led_wan/{s/2/3/g}' user/shared/defaults.c
+
+# 区域代码
+sed -i '/DEF_WLAN_2G_CC/{s/CN/US/g}' user/shared/defaults.h
+
+# NTP 服务器 2
+sed -i '/DEF_NTP_SERVER1/{s/2001:470:0:50::2/ntp2.aliyun.com/g}' user/shared/defaults.h
 
 # 修改K2编译文件开始
 cp -a configs/boards/PSG1218 configs/boards/K2
